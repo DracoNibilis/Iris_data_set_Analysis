@@ -1,28 +1,33 @@
 import pandas as pd 
 import numpy as np 
 import matplotlib.pyplot as plt 
+import seaborn as sns
 
-# reading data from csv file as a pandas data frame with set index as a class
-frame = pd.read_csv("iris_csv.csv", index_col="class")
-#rename index
-frame.index.name = "IRIS CLASS"
-# grouping index into 3 groups ( flower names) - making multiindex
-f1 = frame.index.to_series()
-f2 = f1.groupby(f1).cumcount()
-frame.index = [frame.index, f2]
+#description of the dataset part as a full set 
+irises = pd.read_csv("iris_csv.csv")
+#print(irises.describe())
+#print(irises.index)
+#print(irises.head())
+#print(irises.head())
 
-#making variables by multiindex - 3 variables by flowers
-irises = frame.groupby(by=["IRIS CLASS"]) # grouping data by index ( 3 types )
-#print(irises.size())
-#get group - making variables for separate iris types (3 types)
-iris_setosa = irises.get_group("Iris-setosa")
-iris_versicolor = irises.get_group("Iris-versicolor")
-iris_virginica = irises.get_group("Iris-virginica")
-#print(iris_setosa.head())
-#print(type(iris_setosa))
 
-#making histogram for each variables 
-plt.title("IRIS SETOSA") # title
-plt.figure()
-iris_setosa.plot.hist() # basic histogram for first variable
+#scatter plot for compering sepal length and width of 3 classes of irises
+sns.set_style("whitegrid")
+sns.FacetGrid(irises, hue="class", height=4).map(plt.scatter, "sepallength", "sepalwidth").add_legend()
 plt.show()
+#scatter plot for compering petal length and width of 3 classes of irises
+sns.set_style("whitegrid")
+sns.FacetGrid(irises, hue="class", height=4).map(plt.scatter, "petallength", "petalwidth").add_legend()
+plt.show()
+
+
+#coda that making histograms for all set of variables ( ), and write them to a files ( png)
+iris_setosa=irises.loc[irises["class"]=="Iris-setosa"]
+iris_virginica=irises.loc[irises["class"]=="Iris-virginica"]
+iris_versicolor=irises.loc[irises["class"]=="Iris-versicolor"]
+sns.FacetGrid(irises,hue="class",height=3).map(sns.distplot,"petallength").add_legend().savefig("petallength.png")
+sns.FacetGrid(irises,hue="class",height=3).map(sns.distplot,"petalwidth").add_legend().savefig("petalwidth.png")
+sns.FacetGrid(irises,hue="class",height=3).map(sns.distplot,"sepallength").add_legend().savefig("sepallength.png")
+sns.FacetGrid(irises,hue="class",height=3).map(sns.distplot,"sepalwidth").add_legend().savefig("sepalwidth.png")
+#plt.show()
+
