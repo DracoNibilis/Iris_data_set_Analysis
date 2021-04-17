@@ -3,37 +3,32 @@ import numpy as np
 import matplotlib.pyplot as plt 
 import seaborn as sns
 
+#reading set from csv file as a data frame by pandas
 iris = pd.read_csv("iris_csv.csv")
-#print(frame.head())
 
-
-#coda that making histograms for all set of variables ( ), and write them to a files ( png)
+#separating data into 3 types of irises
 iris_setosa=iris.loc[iris["class"]=="Iris-setosa"]
 iris_virginica=iris.loc[iris["class"]=="Iris-virginica"]
 iris_versicolor=iris.loc[iris["class"]=="Iris-versicolor"]
-sns.FacetGrid(iris,hue="class",height=3).map(sns.distplot,"petallength").add_legend().savefig("petallength.png")
-sns.FacetGrid(iris,hue="class",height=3).map(sns.distplot,"petalwidth").add_legend().savefig("petalwidth.png")
-sns.FacetGrid(iris,hue="class",height=3).map(sns.distplot,"sepallength").add_legend().savefig("sepallength.png")
-sns.FacetGrid(iris,hue="class",height=3).map(sns.distplot,"sepalwidth").add_legend().savefig("sepalwidth.png")
-#plt.show()
 
-import pandas as pd 
-import numpy as np 
-import matplotlib.pyplot as plt 
-import seaborn as sns
-#description of the dataset part as a full set 
-frame = pd.read_csv("iris_csv.csv")
-#print(frame.describe())
-#print(frame.index)
-#print(frame.head())
-#print(frame.head())
+#writing test file with summary description of full set and each type of irises
+with open("summary.txt", "a" ) as f:
+    f.write("\t *** ANALYSIS OF A IRIS DATA SET ***")
+    f.write("\n")
+    f.write("\n")
+    f.write("First rows of a data set : \n {}".format(iris.head()))
+    f.write("\n")
+    f.write("\n")
+    f.write("Description of a data set of irises :\n {}".format(iris.describe()))
+    f.write("\n")
+    f.write("\n")
+    f.write("Description of a variable of iris setosa : \n {}".format(iris_setosa.describe()))
+    f.write("\n")
+    f.write("\n")
+    f.write("Description of a variable of iris virginica : \n {}".format(iris_virginica.describe()))
+    f.write("\n")
+    f.write("\n")
+    f.write("Description of a variable of iris versicolor : \n {}".format(iris_versicolor.describe()))
+    f.write("\n")
 
 
-#scatter plot for compering sepal length and width of 3 classes of irises
-sns.set_style("whitegrid")
-sns.FacetGrid(frame, hue="class", height=4).map(plt.scatter, "sepallength", "sepalwidth").add_legend()
-plt.show()
-#scatter plot for compering petal length and width of 3 classes of irises
-sns.set_style("whitegrid")
-sns.FacetGrid(frame, hue="class", height=4).map(plt.scatter, "petallength", "petalwidth").add_legend()
-plt.show()
