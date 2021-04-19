@@ -4,31 +4,29 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 
 #reading set from csv file as a data frame by pandas
-iris = pd.read_csv("iris_csv.csv")
+irises = pd.read_csv("iris_csv.csv")
 
-#separating data into 3 types of irises
-iris_setosa=iris.loc[iris["class"]=="Iris-setosa"]
-iris_virginica=iris.loc[iris["class"]=="Iris-virginica"]
-iris_versicolor=iris.loc[iris["class"]=="Iris-versicolor"]
+#function that show scatter plots 
+def show_scatter(irises):
+    sns.set_style("whitegrid")
+    sns.FacetGrid(irises, hue="class", height=4).map(plt.scatter, "sepallength", "sepalwidth").add_legend()
+    plt.show()
+    sns.set_style("whitegrid")
+    sns.FacetGrid(irises, hue="class", height=4).map(plt.scatter, "petallength", "petalwidth").add_legend()
+    plt.show()
 
-#writing test file with summary description of full set and each type of irises
-with open("summary.txt", "a" ) as f:
-    f.write("\t *** ANALYSIS OF A IRIS DATA SET ***")
-    f.write("\n")
-    f.write("\n")
-    f.write("First rows of a data set : \n {}".format(iris.head()))
-    f.write("\n")
-    f.write("\n")
-    f.write("Description of a data set of irises :\n {}".format(iris.describe()))
-    f.write("\n")
-    f.write("\n")
-    f.write("Description of a variable of iris setosa : \n {}".format(iris_setosa.describe()))
-    f.write("\n")
-    f.write("\n")
-    f.write("Description of a variable of iris virginica : \n {}".format(iris_virginica.describe()))
-    f.write("\n")
-    f.write("\n")
-    f.write("Description of a variable of iris versicolor : \n {}".format(iris_versicolor.describe()))
-    f.write("\n")
 
+show_scatter(irises)
+
+
+
+#function that write to file histograms
+def write_hist(irises):
+    sns.FacetGrid(irises,hue="class",height=3).map(sns.distplot,"petallength").add_legend().savefig("petallength.png")
+    sns.FacetGrid(irises,hue="class",height=3).map(sns.distplot,"petalwidth").add_legend().savefig("petalwidth.png")
+    sns.FacetGrid(irises,hue="class",height=3).map(sns.distplot,"sepallength").add_legend().savefig("sepallength.png")
+    sns.FacetGrid(irises,hue="class",height=3).map(sns.distplot,"sepalwidth").add_legend().savefig("sepalwidth.png")
+
+
+write_hist(irises)
 
