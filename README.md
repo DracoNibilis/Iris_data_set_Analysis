@@ -22,6 +22,14 @@ The dataset contains a set of 150 records under five attributes:
 
 The line 0 - is header containing description of each row // sepallength,sepalwidth,petallength,petalwidth,class // .
 
+-- CODE
 
+
+
+
+-- SUMMARY
+
+
+--REFERENCS
 
 
