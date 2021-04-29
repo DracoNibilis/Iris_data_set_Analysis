@@ -22,14 +22,43 @@ The dataset contains a set of 150 records under five attributes:
 
 The line 0 - is header containing description of each row // sepallength,sepalwidth,petallength,petalwidth,class // .
 
--- CODE
+-- CODE - LIBRARY USED
+
+List of libraries used in this code:
+- pandas -  imported as pd - is a Python package for data science; it offers data structures for data manipulation and analysis.
+- numpy - imported as np - is a library for the Python, adding support for large, multi-dimensional arrays and matrices, along with a large collection of high-level mathematical functions to operate on these arrays.
+- matplotlib.pyplot - imported as plt - is a comprehensive library for creating static, animated, and interactive visualizations in Python.
+- seaborn -  imported as sns -  is a Python data visualization library based on matplotlib. It provides a high-level interface for drawing attractive and informative statistical graphics.
 
 
+--- STRUCTURE OF CODE
+
+For user disposition there is menu, containing all the elements that code is doing. 
+Menu will provide 4 choices for the user:
+1 - to see 2 scatter plots of irises
+2 - to generate 4 histograms (save into files as png )
+3 - to generate summary.txt file 
+4 - to quit the program.
+
+Functions used in code:
+ - show_scatter() - function based on seaborn library, which is generating two scatter plots of dataset
+ - write_hist() - function based on seaborn library , which is generating four histograms of dataset and writing them to a file as a .png files
+ - text_summary() - function that is generating summary file with information about the dataset
+
+---- PLOTS
+
+- scatter plots - compering data of sepals ( length and width) and petals ( length and width) from dataset, each scatter plot shows compering information,
+
+- histograms - each histogram is representation of comparing data :
+    - petallength
+    - petalwidth
+    - sepallength
+    - sepalwidth
 
 
 -- SUMMARY
 
 
---REFERENCS
+--REFERENCES
 
 

@@ -17,10 +17,7 @@ f = open("summary.txt", "a+")
 def show_scatter(irises):
     sns.set_style("whitegrid")
     sns.FacetGrid(irises, hue="class", height=4).map(plt.scatter, "sepallength", "sepalwidth").add_legend()
-    #plt.show()
-    #sns.set_style("whitegrid")
     sns.FacetGrid(irises, hue="class", height=4).map(plt.scatter, "petallength", "petalwidth").add_legend()
-    #plt.show()
     return plt.show()
 
 #function that write to file -  histograms 4
@@ -57,14 +54,14 @@ def text_summary(f):
 
 irises = pd.read_csv("iris_csv.csv")
 print("WELCOME IN IRISES DATA ANALYTICS PROJECT\n")
-print("Enter 1 - to see just 2 scatter plots of irises")
-print("Enter 2 - to generate 4 histograms (show them / save them )")
-print("Enter 3 - to get full raport (scatter / hist/ summary.txt file)")
+print("Enter 1 - to see  2 scatter plots of irises")
+print("Enter 2 - to generate 4 histograms (save into the files)")
+print("Enter 3 - to generate summary.txt file ")
 print("Enter 4 - to quit")
 
 list_of_choises = ["1", "2", "3", ]
 choice = input("enter number: ")
-#looping 
+
 while choice in list_of_choises:
     if choice == "1":
         #use show_scatter function
@@ -74,7 +71,7 @@ while choice in list_of_choises:
         
     elif choice == "2":
         #use write_hist function
-        print("show/save hist")
+        print("saving 4 histograms")
         write_hist(irises)
         choice = input("enter number: ")
     elif choice == "3":
