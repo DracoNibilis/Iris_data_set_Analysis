@@ -1,3 +1,4 @@
+# import libraries
 import pandas as pd 
 import numpy as np 
 import matplotlib.pyplot as plt 
@@ -13,14 +14,14 @@ iris_versicolor=irises.loc[irises["class"]=="Iris-versicolor"]
 #creating text file summary.txt 
 f = open("summary.txt", "a+")
 
-#function that show scatter plots 2
+#function that show scatter plots 
 def show_scatter(irises):
     sns.set_style("whitegrid")
     sns.FacetGrid(irises, hue="class", height=4).map(plt.scatter, "sepallength", "sepalwidth").add_legend()
     sns.FacetGrid(irises, hue="class", height=4).map(plt.scatter, "petallength", "petalwidth").add_legend()
     return plt.show()
 
-#function that write to file -  histograms 4
+#function that write to file histograms 
 def write_hist(irises):
     sns.FacetGrid(irises,hue="class",height=3).map(sns.distplot,"petallength").add_legend().savefig("petallength.png")
     sns.FacetGrid(irises,hue="class",height=3).map(sns.distplot,"petalwidth").add_legend().savefig("petalwidth.png")
@@ -29,7 +30,6 @@ def write_hist(irises):
 
 
 #function to write summary into txt file
-
 def text_summary(f):
     with open("summary.txt", "a" ) as f:
         f.write("\t *** ANALYSIS OF A IRIS DATA SET ***")
@@ -49,19 +49,20 @@ def text_summary(f):
         f.write("\n")
         f.write("Description of a variable of irises versicolor : \n {}".format(iris_versicolor.describe()))
         f.write("\n")
-        #more about total analysis of set / conclusions
     return f
 
-irises = pd.read_csv("iris_csv.csv")
+# printing instruction to the menu 
 print("WELCOME IN IRISES DATA ANALYTICS PROJECT\n")
 print("Enter 1 - to see  2 scatter plots of irises")
 print("Enter 2 - to generate 4 histograms (save into the files)")
 print("Enter 3 - to generate summary.txt file ")
 print("Enter 4 - to quit")
 
+# list of choices
 list_of_choises = ["1", "2", "3", ]
 choice = input("enter number: ")
 
+# loop for moving through menu
 while choice in list_of_choises:
     if choice == "1":
         #use show_scatter function
